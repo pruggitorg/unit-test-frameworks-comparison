@@ -1,10 +1,7 @@
-﻿using BusinessLogic.Interfaces;
-using BusinessLogic.PurchaseOrderModule;
+﻿using BusinessLogic.PurchaseOrderModule;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CoreFunctionality.TestHelper
+namespace SharedForTests.PurchaseOrderModule
 {
     /// <remarks>Could also implement IPurchaseItem, instead of an extension method</remarks>
     public static class PurchaseItemsHelper

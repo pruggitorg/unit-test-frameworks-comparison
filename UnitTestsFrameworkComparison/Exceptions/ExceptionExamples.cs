@@ -39,14 +39,6 @@ namespace CoreFunctionality.Exceptions
             // assert
             act.Should().Throw<ArgumentNullException>();
         }
-
-        [TestMethod]
-        public void NUnit_Given_Null_For_DatenTimeProvier_Should_Throw_Exception()
-        {
-            TestDelegate act = () => new PurchaseOrder(null, null);
-
-            NUnit.Framework.Assert.Throws<ArgumentNullException>(act);
-        }
     }
 }
 
