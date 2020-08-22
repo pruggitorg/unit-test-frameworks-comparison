@@ -23,6 +23,22 @@ namespace CoreFunctionality.Events
         }
 
         [TestMethod]
+        public void Adding_Item_Should_Raise_Event()
+        {
+            // arrange
+            bool eventRaised = false;
+            PurchaseItem purchaseItem = new PurchaseItem().CreateRandom();            
+
+            _purchaseOrder.ItemAdded += (_, e) => { eventRaised = true; };                      
+
+            // act
+            _purchaseOrder.AddPurchaseItem(purchaseItem);
+
+            // assert
+            Assert.IsTrue(eventRaised);
+        }
+
+        [TestMethod]
         public void Fluent_Adding_Item_Should_Raise_Event()
         {
             // arrange
