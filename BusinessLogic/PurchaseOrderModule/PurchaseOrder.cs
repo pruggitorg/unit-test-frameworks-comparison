@@ -28,7 +28,7 @@ namespace BusinessLogic.PurchaseOrderModule
         public decimal TotalAmount { get => CalcOrderTotalAmount(); }
 
         public delegate void EventHandler(object sender, ItemAddedEventArgs e);
-        public event EventHandler ItemAdded;
+        public event EventHandler<ItemAddedEventArgs> ItemAdded;
 
         /// <summary>
         /// Creates a new instance of the purchase order with custom date-time provider.
