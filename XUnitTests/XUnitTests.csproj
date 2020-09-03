@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
+    <ProjectReference Include="..\SharedForTests\SharedForTests.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,7 @@
 ﻿using BusinessLogic.PurchaseOrderModule;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using NUnit;
-using CoreFunctionality.TestHelper;
-using BusinessLogic.Interfaces;
+using SharedForTests.PurchaseOrderModule;
 
 namespace CoreFunctionality.Events
 {
@@ -28,6 +23,22 @@ namespace CoreFunctionality.Events
         }
 
         [TestMethod]
+        public void Adding_Item_Should_Raise_Event()
+        {
+            // arrange
+            bool eventRaised = false;
+            PurchaseItem purchaseItem = new PurchaseItem().CreateRandom();            
+
+            _purchaseOrder.ItemAdded += (_, e) => { eventRaised = true; };                      
+
+            // act
+            _purchaseOrder.AddPurchaseItem(purchaseItem);
+
+            // assert
+            Assert.IsTrue(eventRaised);
+        }
+
+        [TestMethod]
         public void Fluent_Adding_Item_Should_Raise_Event()
         {
             // arrange
@@ -41,22 +52,6 @@ namespace CoreFunctionality.Events
                 // assert
                 eventSource.Should().Raise("ItemAdded");
             }
-        }
-
-        [TestMethod]
-        public void NUnit_Adding_Item_Should_Raise_Event()
-        {
-            // arrange
-            PurchaseItem purchaseItem = new PurchaseItem().CreateRandom();
-           
-            bool wasRaised = false;
-            _purchaseOrder.ItemAdded += (_, s) => { wasRaised = true; };
-
-            // act
-            _purchaseOrder.AddPurchaseItem(purchaseItem);
-
-            // assert
-            NUnit.Framework.Assert.IsTrue(wasRaised);
         }
     }
 }
