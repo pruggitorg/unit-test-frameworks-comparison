@@ -1,32 +1,32 @@
 ﻿using BusinessLogic.PurchaseOrderModule;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CoreFunctionality.Exceptions
 {
-    [Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
+    [TestClass]
     public class ExceptionExamples
     {
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
+        /// <summary>
+        /// Expecting an exception using an attribute
+        /// </summary>
+        [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void MSTest_Given_Null_For_DatenTimeProvier_Should_Throw_Exception_V1()
+        public void Given_Null_For_DatenTimeProvier_Should_Throw_Exception_V1()
         {
             // act
             PurchaseOrder purchaseOrder = new PurchaseOrder(null, null);
         }
         
         [TestMethod]
-        public void MSTest_Given_Null_For_DatenTimeProvier_Should_Throw_Exception_V2()
+        public void Given_Null_For_DatenTimeProvier_Should_Throw_Exception_V2()
         {
             // act
             Action act = () => new PurchaseOrder(null, null);
 
             // assert
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.ThrowsException<ArgumentNullException>(act);
+            Assert.ThrowsException<ArgumentNullException>(act);
         }
 
 
