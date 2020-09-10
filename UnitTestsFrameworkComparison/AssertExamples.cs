@@ -5,7 +5,9 @@ namespace UnitTestsFrameworkComparison
 {
     namespace UnitTestsFrameworkComparison.Base
     {
+        using Microsoft.Extensions.Logging;
         using Microsoft.VisualStudio.TestTools.UnitTesting;
+        using SharedForTests.Logging;
 
         [TestClass]
         public class AssertExamplesBase
@@ -15,7 +17,8 @@ namespace UnitTestsFrameworkComparison
             [TestInitialize]
             public void TestSetup()
             {
-                _purchaseOrder = new PurchaseOrderFactory().CreatePurchaseOrderInstance();
+                ILogger logger = LoggingFactory.UseSerilogToDebug();
+                _purchaseOrder = new PurchaseOrderFactory().CreatePurchaseOrderInstance(logger);
             }
 
             [TestCleanup]

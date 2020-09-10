@@ -37,12 +37,13 @@ namespace BusinessLogic.PurchaseOrderModule
         /// <param name="logger"></param>
         /// <param name="item">Type representing the purchase item</param>
         /// <exception cref="ArgumentNullException"></exception>
+        /// <remarks>https://stackoverflow.com/questions/51345161/should-i-take-ilogger-iloggert-iloggerfactory-or-iloggerprovider-for-a-libra</remarks>
         public PurchaseOrder(IDateTimeProvider dateTimeProvider, ILogger logger)
-        {            
+        {
             _dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException("DateTimeProvider must not be null.");
-            _logger = logger ?? throw new ArgumentNullException("Logger must not be null.");            
+            _logger = logger ?? throw new ArgumentNullException("Logger must not be null.");
 
-            _logger.LogTrace(nameof(PurchaseOrder));
+            _logger.LogTrace($"{nameof(PurchaseOrder)} ctor");
 
             _purchaseItems = new List<IPurchaseItem>();
 
