@@ -17,7 +17,7 @@ namespace UnitTestsFrameworkComparison
             [TestInitialize]
             public void TestSetup()
             {
-                ILogger logger = LoggingFactory.UseSerilogToDebug();
+                ILogger<PurchaseOrder> logger = LoggingFactory.UseSerilogToDebug<PurchaseOrder>();
                 _purchaseOrder = new PurchaseOrderFactory().CreatePurchaseOrderInstance(logger);
             }
 

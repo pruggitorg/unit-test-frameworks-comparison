@@ -14,7 +14,7 @@ namespace SharedForTests.Logging
         /// </summary>
         /// <returns></returns>
         /// <remarks>https://benfoster.io/blog/serilog-best-practices/</remarks>
-        public static Microsoft.Extensions.Logging.ILogger UseSerilogToDebug()
+        public static Microsoft.Extensions.Logging.ILogger<T> UseSerilogToDebug<T>()
         {
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
             {
@@ -30,7 +30,7 @@ namespace SharedForTests.Logging
                     );
             });
 
-            Microsoft.Extensions.Logging.ILogger logger = loggerFactory.CreateLogger(nameof(PurchaseOrder));
+            Microsoft.Extensions.Logging.ILogger<T> logger = loggerFactory.CreateLogger<T>();
 
             return logger;
         }
@@ -42,7 +42,7 @@ namespace SharedForTests.Logging
         /// <remarks>Microsoft logger is a logging abstraction, the default sinks are very extremely basic and usually farm out 
         /// to other systems to get more features. Output timestamp by default https://github.com/aspnet/Logging/issues/483#issuecomment-320574792
         /// </remarks>
-        public static Microsoft.Extensions.Logging.ILogger UseConsoleLogger()
+        public static Microsoft.Extensions.Logging.ILogger<T> UseConsoleLogger<T>()
         {
             ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
             {
@@ -50,7 +50,7 @@ namespace SharedForTests.Logging
                 builder.AddFilter<ConsoleLoggerProvider>(null, LogLevel.Information);
             });
 
-            Microsoft.Extensions.Logging.ILogger logger = loggerFactory.CreateLogger(nameof(PurchaseOrder));
+            Microsoft.Extensions.Logging.ILogger<T> logger = loggerFactory.CreateLogger<T>();
 
             return logger;
         }

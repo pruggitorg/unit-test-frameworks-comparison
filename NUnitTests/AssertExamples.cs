@@ -1,5 +1,7 @@
 using BusinessLogic.PurchaseOrderModule;
+using Microsoft.Extensions.Logging;
 using NUnit.Framework;
+using SharedForTests.Logging;
 using System;
 
 namespace NUnitTests
@@ -12,7 +14,8 @@ namespace NUnitTests
         [SetUp]
         public void TestSetup()
         {
-            _purchaseOrder = new PurchaseOrderFactory().CreatePurchaseOrderInstance();
+            ILogger<PurchaseOrder> logger = LoggingFactory.UseSerilogToDebug<PurchaseOrder>();
+            _purchaseOrder = new PurchaseOrderFactory().CreatePurchaseOrderInstance(logger);
         }
 
         [TearDown]

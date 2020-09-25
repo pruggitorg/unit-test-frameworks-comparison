@@ -13,7 +13,7 @@ namespace BusinessLogic.PurchaseOrderModule
         /// <returns></returns>
         public PurchaseOrder CreatePurchaseOrderInstance()
         {            
-            ILogger logger = NullLogger.Instance;
+            ILogger<PurchaseOrder> logger = NullLogger<PurchaseOrder>.Instance;
 
             return CreatePurchaseOrderInstance(logger);
         }
@@ -23,7 +23,7 @@ namespace BusinessLogic.PurchaseOrderModule
         /// </summary>
         /// <param name="logger">Type used to perfrom logging</param>
         /// <returns></returns>
-        public PurchaseOrder CreatePurchaseOrderInstance(ILogger logger)
+        public PurchaseOrder CreatePurchaseOrderInstance(ILogger<PurchaseOrder> logger)
         {
             IDateTimeProvider dateTimeProvider = new DateTimeProvider();
 

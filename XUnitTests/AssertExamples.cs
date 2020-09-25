@@ -1,4 +1,6 @@
 using BusinessLogic.PurchaseOrderModule;
+using Microsoft.Extensions.Logging;
+using SharedForTests.Logging;
 using System;
 using Xunit;
 
@@ -23,7 +25,8 @@ namespace XUnitTests
         /// </summary>
         public AssertExamplesBase()
         {
-            _purchaseOrder = new PurchaseOrderFactory().CreatePurchaseOrderInstance();
+            ILogger<PurchaseOrder> logger = LoggingFactory.UseSerilogToDebug<PurchaseOrder>();
+            _purchaseOrder = new PurchaseOrderFactory().CreatePurchaseOrderInstance(logger);
         }
 
         /// <summary>

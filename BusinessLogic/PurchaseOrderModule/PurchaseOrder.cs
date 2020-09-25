@@ -12,7 +12,7 @@ namespace BusinessLogic.PurchaseOrderModule
         private Guid _id;
         private DateTime _dateCreated;
         private readonly IDateTimeProvider _dateTimeProvider;
-        private readonly ILogger _logger;        
+        private readonly ILogger<PurchaseOrder> _logger;        
         private List<IPurchaseItem> _purchaseItems;
 
         public Guid Id { get => _id; private set => _id = value; }
@@ -38,7 +38,7 @@ namespace BusinessLogic.PurchaseOrderModule
         /// <param name="item">Type representing the purchase item</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <remarks>https://stackoverflow.com/questions/51345161/should-i-take-ilogger-iloggert-iloggerfactory-or-iloggerprovider-for-a-libra</remarks>
-        public PurchaseOrder(IDateTimeProvider dateTimeProvider, ILogger logger)
+        public PurchaseOrder(IDateTimeProvider dateTimeProvider, ILogger<PurchaseOrder> logger)
         {
             _dateTimeProvider = dateTimeProvider ?? throw new ArgumentNullException("DateTimeProvider must not be null.");
             _logger = logger ?? throw new ArgumentNullException("Logger must not be null.");
@@ -54,6 +54,8 @@ namespace BusinessLogic.PurchaseOrderModule
         {
             _purchaseItems.Add(item);
             RaiseItemAdded(new ItemAddedEventArgs() { ItemAdded = item }) ;
+
+            _logger.LogTrace("{nameOfMethod} {@item}", nameof(AddPurchaseItem), item);
         }
 
         public IEnumerable<IPurchaseItem> GetPurchaseItems()
