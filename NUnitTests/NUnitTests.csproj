@@ -17,4 +17,8 @@
     <ProjectReference Include="..\SharedForTests\SharedForTests.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataDriven\" />
+  </ItemGroup>
+
 </Project>
